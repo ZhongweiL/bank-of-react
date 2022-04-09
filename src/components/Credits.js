@@ -2,8 +2,8 @@
 
 const Credits = (props) => {
 	let creditsView = () => {
-    const { Credits } = props;
-    return Credits.map((credits) => {
+    const { credits } = props;
+    return credits.map((credits) => {
       let date = credits.date.slice(0,10);
       return <li key={credits.id}>{credits.amount} {credits.description} {date}</li>
     }) 
@@ -21,4 +21,4 @@ const Credits = (props) => {
   )
 }
 
-export default Debits;
+export default Credits;

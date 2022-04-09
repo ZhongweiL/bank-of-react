@@ -6,7 +6,7 @@ import Home from './components/Home';
 import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Debits from './components/Debits';
-import Credits from './components/Debits';
+import Credits from './components/Credits';
 
 class App extends Component {
   constructor() {  // Create and initialize state
@@ -37,7 +37,7 @@ class App extends Component {
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
     const DebitsComponent = () => (<Debits debits={this.state.debits} />)
-    const CreditsComponent = () => (<Debits debits={this.state.credits} />)
+    const CreditsComponent = () => (<Credits credits={this.state.credits} />)
     return (
       <Router>
         <div>
