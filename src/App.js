@@ -37,6 +37,7 @@ class App extends Component {
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
     const DebitsComponent = () => (<Debits debits={this.state.debits} />)
+    const CreditsComponent = () => (<Debits debits={this.state.credits} />)
     return (
       <Router>
         <div>
@@ -44,7 +45,7 @@ class App extends Component {
           <Route exact path="/userProfile" render={UserProfileComponent}/>
           <Route exact path="/login" render={LogInComponent}/>
           <Route exact path="/debits" render={DebitsComponent}/>
-          <Route exact path="/credits" render={Credits}/>
+          <Route exact path="/credits" render={CreditsComponent}/>
         </div>
       </Router>
     );
