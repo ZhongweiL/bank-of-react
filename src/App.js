@@ -7,6 +7,7 @@ import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Debits from './components/Debits';
 import Credits from './components/Credits';
+import axios from "axios";
 
 class App extends Component {
   constructor() {  // Create and initialize state
@@ -20,6 +21,21 @@ class App extends Component {
       credits: [],
       debits: []
     }
+  }
+
+  async componentDidMount() {
+    //define API url
+    const debitsAPI = "https://moj-api.herokuapp.com/debits";
+    const creditsAPI = "https://moj-api.herokuapp.com/credits";
+
+    try {
+      //update states
+      let debitsData = await axios.get(debitsAPI);
+      this.setState({debits: debitsData.data});
+    } catch (error) {
+      console.log(error.message);
+    }
+
   }
 
   // Update state's currentUser (userName) after "Log In" button is clicked
