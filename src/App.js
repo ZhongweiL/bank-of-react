@@ -45,6 +45,13 @@ class App extends Component {
     this.setState({currentUser: newUser})
   }
 
+  addDebit = (event) => {
+    event.preventDefault(); // prevent the form from submitting
+    const amount = event.target.amount.value;
+    const description = event.target.description.value;
+    console.log(amount, description);
+  }
+
   // Create Routes and React elements to be rendered using React components
   render() {  
     const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
@@ -52,7 +59,7 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
-    const DebitsComponent = () => (<Debits debits={this.state.debits} />)
+    const DebitsComponent = () => (<Debits debits={this.state.debits} addDebit={this.addDebit} />)
     const CreditsComponent = () => (<Credits credits={this.state.credits} />)
     return (
       <Router>
