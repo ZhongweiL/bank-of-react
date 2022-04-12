@@ -7,6 +7,7 @@ import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Debits from './components/Debits';
 import Credits from './components/Credits';
+import axios from "axios";
 
 class App extends Component {
   constructor() {  // Create and initialize state
@@ -18,8 +19,25 @@ class App extends Component {
         memberSince: '07/23/96',
       },
       credits: [],
-      debits: []
+      debits: [],
+      newDebitId: 1
     }
+  }
+
+  async componentDidMount() {
+    //define API url
+    const debitsAPI = "https://moj-api.herokuapp.com/debits";
+    const creditsAPI = "https://moj-api.herokuapp.com/credits";
+
+    try {
+      //update states
+      let debitsData = await axios.get(debitsAPI);
+      this.setState({debits: debitsData.data});
+      console.log(this.state.debits);
+    } catch (error) {
+      console.log(error.message);
+    }
+
   }
 
   // Update state's currentUser (userName) after "Log In" button is clicked
@@ -29,6 +47,20 @@ class App extends Component {
     this.setState({currentUser: newUser})
   }
 
+  addDebit = (event) => {
+    event.preventDefault(); // prevent the form from submitting
+    const amount = event.target.amount.value;
+    const description = event.target.description.value;
+    const newDebit = {
+      id: this.state.newDebitId.toString(), 
+      description: description, 
+      amount: amount, 
+      date: new Date().toISOString()
+    };
+    this.setState({newDebitId: this.state.newDebitId + 1});
+    this.setState({debits: [...this.state.debits, newDebit]});
+  }
+
   // Create Routes and React elements to be rendered using React components
   render() {  
     const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
@@ -36,7 +68,7 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
-    const DebitsComponent = () => (<Debits debits={this.state.debits} />)
+    const DebitsComponent = () => (<Debits debits={this.state.debits} addDebit={this.addDebit} />)
     const CreditsComponent = () => (<Credits credits={this.state.credits} />)
     return (
       <Router>
