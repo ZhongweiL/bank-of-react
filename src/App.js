@@ -19,7 +19,8 @@ class App extends Component {
         memberSince: '07/23/96',
       },
       credits: [],
-      debits: []
+      debits: [],
+      newDebitId: 1
     }
   }
 
@@ -32,6 +33,7 @@ class App extends Component {
       //update states
       let debitsData = await axios.get(debitsAPI);
       this.setState({debits: debitsData.data});
+      console.log(this.state.debits);
     } catch (error) {
       console.log(error.message);
     }
@@ -49,7 +51,15 @@ class App extends Component {
     event.preventDefault(); // prevent the form from submitting
     const amount = event.target.amount.value;
     const description = event.target.description.value;
-    console.log(amount, description);
+    const newDebit = {
+      id: this.state.newDebitId.toString(), 
+      description: description, 
+      amount: amount, 
+      date: new Date().toISOString()
+    };
+    this.setState({newDebitId: this.state.newDebitId + 1});
+    this.setState({debits: [...this.state.debits, newDebit]});
+    console.log(newDebit);
   }
 
   // Create Routes and React elements to be rendered using React components
