@@ -59,7 +59,6 @@ class App extends Component {
     };
     this.setState({newDebitId: this.state.newDebitId + 1});
     this.setState({debits: [...this.state.debits, newDebit]});
-    console.log(newDebit);
   }
 
   // Create Routes and React elements to be rendered using React components
