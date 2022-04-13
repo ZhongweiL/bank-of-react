@@ -20,7 +20,8 @@ class App extends Component {
       },
       credits: [],
       debits: [],
-      newDebitId: 1
+      newDebitId: 1,
+      newCreditId: 1
     }
   }
 
@@ -32,8 +33,9 @@ class App extends Component {
     try {
       //update states
       let debitsData = await axios.get(debitsAPI);
+      let creditsData = await axios.get(creditsAPI);
       this.setState({debits: debitsData.data});
-      console.log(this.state.debits);
+      this.setState({credits: creditsData.data});
     } catch (error) {
       console.log(error.message);
     }
@@ -61,6 +63,21 @@ class App extends Component {
     this.setState({debits: [...this.state.debits, newDebit]});
   }
 
+  addCredit = (event) => {
+    event.preventDefault(); // prevent the form from submitting
+    const amount = event.target.amount.value;
+    const description = event.target.description.value;
+    const newCredit = {
+      id: this.state.newCreditId.toString(), 
+      description: description, 
+      amount: amount, 
+      date: new Date().toISOString()
+    };
+    console.log(this.state.newCreditId)
+    this.setState({newCreditId: this.state.newCreditId + 1});
+    this.setState({credits: [...this.state.credits, newCredit]});
+  }
+
   // Create Routes and React elements to be rendered using React components
   render() {  
     const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
@@ -69,7 +86,7 @@ class App extends Component {
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
     const DebitsComponent = () => (<Debits debits={this.state.debits} addDebit={this.addDebit} />)
-    const CreditsComponent = () => (<Credits credits={this.state.credits} />)
+    const CreditsComponent = () => (<Credits credits={this.state.credits} addCredit={this.addCredit} />)
     return (
       <Router>
         <div>
