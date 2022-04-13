@@ -82,7 +82,7 @@ class App extends Component {
     console.log(this.state.newCreditId)
     this.setState({newCreditId: this.state.newCreditId + 1});
     this.setState({credits: [...this.state.credits, newCredit]});
-    this.setState({accountBalance: this.setState.accountBalance + newDebit.amount});
+    this.setState({accountBalance: this.setState.accountBalance + newCredit.amount});
   }
 
   // Create Routes and React elements to be rendered using React components
