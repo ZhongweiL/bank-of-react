@@ -66,7 +66,8 @@ class App extends Component {
     };
     this.setState({newDebitId: this.state.newDebitId + 1});
     this.setState({debits: [...this.state.debits, newDebit]});
-    this.setState({accountBalance: this.setState.accountBalance - newDebit.amount});
+    const newBalance = Number(this.state.accountBalance) - Number(newDebit.amount);
+    this.setState({accountBalance: newBalance.toFixed(2)});
   }
 
   addCredit = (event) => {
@@ -82,7 +83,8 @@ class App extends Component {
     console.log(this.state.newCreditId)
     this.setState({newCreditId: this.state.newCreditId + 1});
     this.setState({credits: [...this.state.credits, newCredit]});
-    this.setState({accountBalance: this.setState.accountBalance + newCredit.amount});
+    const newBalance = Number(this.state.accountBalance) + Number(newCredit.amount);
+    this.setState({accountBalance: newBalance.toFixed(2)});
   }
 
   // Create Routes and React elements to be rendered using React components
