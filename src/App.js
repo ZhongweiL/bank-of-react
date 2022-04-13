@@ -13,7 +13,7 @@ class App extends Component {
   constructor() {  // Create and initialize state
     super(); 
     this.state = {
-      accountBalance: 14568.27,
+      accountBalance: 0,
       currentUser: {
         userName: 'Joe Smith',
         memberSince: '07/23/96',
@@ -36,6 +36,11 @@ class App extends Component {
       let creditsData = await axios.get(creditsAPI);
       this.setState({debits: debitsData.data});
       this.setState({credits: creditsData.data});
+      //give the account balance an initial value
+      let totalCredits = this.state.credits.reduce((totalAmount, credit) => totalAmount + credit.amount, 0);
+      let totalDebits = this.state.debits.reduce((totalAmount, debit) => totalAmount + debit.amount, 0);
+      let accountBalance = totalCredits - totalDebits;
+      this.setState({accountBalance: accountBalance.toFixed(2)});
     } catch (error) {
       console.log(error.message);
     }
