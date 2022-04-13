@@ -62,18 +62,19 @@ class App extends Component {
     this.setState({debits: [...this.state.debits, newDebit]});
   }
 
-  addDebit = (event) => {
+  addCredit = (event) => {
     event.preventDefault(); // prevent the form from submitting
     const amount = event.target.amount.value;
     const description = event.target.description.value;
-    const newDebit = {
+    const newCredit = {
       id: this.state.newCreditId.toString(), 
       description: description, 
       amount: amount, 
       date: new Date().toISOString()
     };
+    console.log(this.state.newCreditId)
     this.setState({newCreditId: this.state.newCreditId + 1});
-    this.setState({credits: [...this.state.credits, newDebit]});
+    this.setState({credits: [...this.state.credits, newCredit]});
   }
 
   // Create Routes and React elements to be rendered using React components
@@ -84,7 +85,7 @@ class App extends Component {
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
     const DebitsComponent = () => (<Debits debits={this.state.debits} addDebit={this.addDebit} />)
-    const CreditsComponent = () => (<Credits credits={this.state.credits} />)
+    const CreditsComponent = () => (<Credits credits={this.state.credits} addCredit={this.addCredit} />)
     return (
       <Router>
         <div>
