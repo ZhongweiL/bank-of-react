@@ -33,8 +33,9 @@ class App extends Component {
     try {
       //update states
       let debitsData = await axios.get(debitsAPI);
+      let creditsData = await axios.get(creditsAPI);
       this.setState({debits: debitsData.data});
-      console.log(this.state.debits);
+      this.setState({credits: creditsData.data});
     } catch (error) {
       console.log(error.message);
     }
