@@ -1,5 +1,9 @@
-# bank-of-react-example-code
-This repository contains a React application example on how to implement client-side routing with React Router and its components including Route, Router, Switch, Link, and Redirect.
+# bank-of-react
+A react application that simulates a basic functionality of a bank. Built as part of the web development course at Hunter College.
+
+# Group member(s)
+Zhongwei Li
+GitHub username: ZhongweiL
 
 **Use the following commands to run the application**
 
