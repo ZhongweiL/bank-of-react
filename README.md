@@ -2,7 +2,7 @@
 A react application that simulates a basic functionality of a bank. Built as part of the web development course at Hunter College.
 
 # Group member(s)
-Zhongwei Li
+Zhongwei Li \
 GitHub username: ZhongweiL
 
 **Use the following commands to run the application**
