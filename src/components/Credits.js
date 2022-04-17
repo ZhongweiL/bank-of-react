@@ -1,5 +1,7 @@
 // src/components/Credits.js
 
+import AccountBalance from './AccountBalance';
+
 const Credits = (props) => {
 	let creditsView = () => {
     const { credits } = props;
@@ -17,6 +19,7 @@ const Credits = (props) => {
         <input type="number" name="amount" />
         <button type="submit">Add Credits</button>
       </form>
+      <AccountBalance accountBalance={props.accountBalance}/>
     </div>
   )
 }
