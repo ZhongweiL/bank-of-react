@@ -1,5 +1,5 @@
 # bank-of-react
-A react application that simulates a bank with some basic functionalities. Built as part of the web development course at Hunter College. Access the app at https://zhongweil.github.io/bank-of-react/
+A React application that simulates a bank with some basic functionalities. Built as part of the web development course at Hunter College. Access the app at https://zhongweil.github.io/bank-of-react/
 
 # Group member(s)
 Zhongwei Li \
